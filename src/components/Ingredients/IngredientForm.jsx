@@ -9,13 +9,25 @@ const IngredientForm = React.memo((props) => {
     enteredAmount: "",
   });
   const titleChangeHandler = (e) => {
-    setUserInput
+    setUserInput((prevState) => {
+      return { ...prevState, enteredTitle: e.target.value };
+    });
   };
-  const amountChangeHandler = (e) => {};
+  const amountChangeHandler = (e) => {
+    setUserInput((prevState) => {
+      return { ...prevState, enteredAmount: e.target.value };
+    });
+  };
 
-  const submitHandler = (event) => {
-    event.preventDefault();
-    // ...
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    const inputData = {
+      title: userInput.enteredTitle,
+      amount: userInput.enteredAmount,
+    };
+    
+    console.log(inputData);
   };
 
   return (
@@ -24,15 +36,18 @@ const IngredientForm = React.memo((props) => {
         <form onSubmit={submitHandler}>
           <div className="form-control">
             <label htmlFor="title">Name</label>
-            <input type="text" id="title" />
+            <input type="text" id="title" onChange={titleChangeHandler} />
           </div>
+
           <div className="form-control">
             <label htmlFor="amount">Amount</label>
-            <input type="number" id="amount" />
+            <input type="number" id="amount" onChange={amountChangeHandler} />
           </div>
+
           <div className="ingredient-form__actions">
             <button type="submit">Add Ingredient</button>
           </div>
+
         </form>
       </Card>
     </section>
