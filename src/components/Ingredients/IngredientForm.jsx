@@ -28,7 +28,7 @@ const IngredientForm = React.memo((props) => {
     };
     props.onAddIngredient(inputData);
 
-    console.log(inputData);
+    // console.log(inputData);
   };
 
   return (
